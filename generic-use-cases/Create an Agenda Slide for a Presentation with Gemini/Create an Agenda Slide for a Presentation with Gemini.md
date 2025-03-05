@@ -2,7 +2,7 @@
 
 Analyze a presentation and create an agenda slide using Gemini and Google Slides.
 
-**Time to Complete (mins):** 15
+**Estimated time to complete:** 15 minutes
 
 ## Overview
 This use case demonstrates how Gemini, an AI chatbot from Google, can help you quickly create a clear and concise agenda slide for any presentation within Google Slides. By automating this process, you can ensure that your audience has a clear understanding of the topics you will cover and the flow of your presentation, which can help improve engagement and knowledge retention.
