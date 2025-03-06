@@ -20,7 +20,7 @@ Drafting emails can be time-consuming, especially when you need to carefully con
 
 * Look for the Gemini icon in the right-hand side panel of your Gmail window.
 * Click on the icon to open the Gemini interface.
-* Here is an example of the Gemini icon in Gmail: [Opens in a new window](beebom.com) Gemini icon in Gmail
+* Here is an example of the Gemini icon in Gmail: 
 
 **3. Provide a Prompt to Gemini**
 

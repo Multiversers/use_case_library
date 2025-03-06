@@ -23,7 +23,10 @@ This use case demonstrates how Gemini, an AI chatbot integrated into Gmail, can 
 **3. Prompt Gemini for a Summary**
 
 * In the Gemini chat window, type the prompt:
-   >"Summarize this email thread."
+ ```markdown
+   "Summarize this email thread."
+```
+
 * Press Enter to send the prompt.
 
 **4. Review and Refine the Summary**
