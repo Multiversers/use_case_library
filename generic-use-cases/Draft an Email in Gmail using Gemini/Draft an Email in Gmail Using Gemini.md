@@ -54,13 +54,6 @@ Drafting emails can be time-consuming, especially when you need to carefully con
 * Proofread the email one last time before sending it.
 * Here is an example of the email composer with the copied email draft: [Opens in a new window](yamm.com) email composer with copied email draft
 
-## Example Solution
-
-Here are a few ideas for how you can use Gemini to draft emails:
-
-* Draft a professional email to a potential client proposing a new project.
-* Write a casual email to a colleague thanking them for their help on a task.
-* Compose a persuasive email to a customer encouraging them to renew their subscription.
 
 ## Additional Resources
 
