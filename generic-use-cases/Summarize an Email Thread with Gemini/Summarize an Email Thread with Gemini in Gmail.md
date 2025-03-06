@@ -23,9 +23,10 @@ This use case demonstrates how Gemini, an AI chatbot integrated into Gmail, can 
 **3. Prompt Gemini for a Summary**
 
 * In the Gemini chat window, type the prompt:
-```markdown
-Summarize this email thread.
+ ```markdown
+   "Summarize this email thread."
 ```
+
 * Press Enter to send the prompt.
 
 **4. Review and Refine the Summary**
@@ -33,11 +34,10 @@ Summarize this email thread.
 * Gemini will analyze the email thread and generate a concise summary.
 * Review the summary presented in the Gemini chat window.
 * If needed, ask Gemini for clarification or more details using prompts like:
-```markdown
-    Can you clarify [specific point]?
-    "Provide more details on [specific topic].
-    "Summarize the key takeaways.
-```
+    * "Can you clarify [specific point]?"
+    * "Provide more details on [specific topic]."
+    * "Summarize the key takeaways."
+
 **5. Integrate and Utilize the Summary**
 
 * Use the summary to quickly understand the email thread's content.
@@ -53,4 +53,5 @@ Summarize this email thread.
 
 ## Additional Resources
 
-* [Collaborate with Gemini in Gmail](https://support.google.com/mail/answer/14199860?hl=en&co=GENIE.Platform%3DDesktop)
+* [Gemini Help Center](https://support.google.com/gemini/answer/14627215?hl=en)
+* [Gemini Blog](https://blog.google/technology/ai/gemini-announcement/)
