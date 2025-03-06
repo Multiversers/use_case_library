@@ -120,7 +120,7 @@ AI coding assistants can predict and suggest code completions, saving developers
 def calculate_area(width, height):
     return width * height
 ```
-## Solution Walkthrough
+## Example solution Walkthrough
 
 The video belows walks through the process to produce a MARP slide deck using and GitHub Copilot in VS Code. We suggest you take a similar approach when creating your own slides. Take a look! 
 
