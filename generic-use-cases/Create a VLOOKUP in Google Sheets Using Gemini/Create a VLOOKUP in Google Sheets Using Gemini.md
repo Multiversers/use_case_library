@@ -4,7 +4,9 @@
 
 ## Overview
 
-VLOOKUP is a powerful function in Google Sheets that allows you to search for a specific value in a column and return a corresponding value from another column. However, constructing VLOOKUP formulas can be tricky and error-prone. Gemini can help you generate these formulas quickly and accurately, directly within your spreadsheet. This use case will guide you through leveraging Gemini to create a VLOOKUP formula, improving your efficiency and accuracy when working with data in Google Sheets.
+This use case will guide you through leveraging Gemini to create a VLOOKUP formula, improving your efficiency and accuracy when working with data in Google Sheets.
+
+VLOOKUP is a powerful function in Google Sheets that allows you to search for a specific value in a column and return a corresponding value from another column. However, constructing VLOOKUP formulas can be tricky and error-prone. Gemini can help you generate these formulas quickly and accurately, directly within your spreadsheet.
 
 ## Steps
 
@@ -17,8 +19,10 @@ VLOOKUP is a powerful function in Google Sheets that allows you to search for a 
 * Be clear about the lookup value, the range containing the data, and the column index number of the return value.
 * You can reference cells or ranges in your sheet directly within your prompt.
 ```markdown 
+Prompt Template 1:
 "Create a VLOOKUP formula that [clearly state the lookup value, the range containing the data, and the column index number of the return value]."
 
+Prompt Template 2:
 "I need to find a formula that looks up the value in [cell containing lookup value] in the table [range containing data]. When it finds a match, I want it to return the value from the [column number] column of the table."
 ```
 ```markdown
