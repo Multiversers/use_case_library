@@ -1,0 +1,143 @@
+name: Use Case Request
+description: Submit a new use case for generation
+title: "[USE CASE]: "
+labels: ["use-case-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # Use Case Request Form
+        This form will help you submit all the necessary information to generate a new use case. Required fields are marked with an asterisk (*).
+        
+        Please provide clear, specific information to ensure the best possible output.
+  
+  - type: input
+    id: title
+    attributes:
+      label: Title*
+      description: Action-oriented title that clearly describes what developers will learn
+      placeholder: "Craft Effective Code Prompts for AI Assistance"
+    validations:
+      required: true
+  
+  - type: input
+    id: family
+    attributes:
+      label: Family/Category*
+      description: The primary skill category this use case belongs to (e.g., Core Skills, LLM API Fundamentals, Tool Use & API Integrations)
+      placeholder: "Core Skills"
+    validations:
+      required: true
+  
+  - type: input
+    id: ai_tool
+    attributes:
+      label: AI Tool*
+      description: The general category of AI tool being used (e.g., Coding Assistants, LLM APIs)
+      placeholder: "Coding Assistants"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: objective
+    attributes:
+      label: Learning Objective*
+      description: Clear, measurable objective that learners will achieve
+      placeholder: "Enable developers to effectively communicate programming intent through structured comments that trigger accurate AI code generation"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: description
+    attributes:
+      label: Description*
+      description: 2-3 sentences describing what this use case covers and why it's valuable
+      placeholder: "This use case trains developers to harness AI tooling by writing precise comments and docstrings that function as prompts for automated code generation. It emphasizes the importance of natural language clarity in directives and guides participants to refine prompts while validating AI-generated outputs."
+    validations:
+      required: true
+  
+  - type: textarea
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: List required skills or knowledge, one per line
+      placeholder: |
+        Writing clear code comments
+        Understanding code structure
+        Basic algorithmic thinking
+  
+  - type: input
+    id: time_estimate
+    attributes:
+      label: Time Estimate*
+      description: Expected time to complete (must be between 10-30 minutes)
+      placeholder: "20 minutes"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps
+      description: List the high-level steps to complete this use case, one per line
+      placeholder: |
+        Write a detailed function description in docstring format
+        Add TODO comments with specific algorithm requirements
+        Use natural language to describe complex logic
+        Refine prompts based on initial AI outputs
+        Validate generated code against original intent
+  
+  - type: input
+    id: tool
+    attributes:
+      label: Specific Tool
+      description: The specific AI tool used (if applicable)
+      placeholder: "GitHub Copilot"
+  
+  - type: input
+    id: department
+    attributes:
+      label: Target Department(s)
+      description: Comma-separated list of target departments
+      placeholder: "SWE,DevOps"
+  
+  - type: input
+    id: role
+    attributes:
+      label: Target Role(s)
+      description: Comma-separated list of target roles
+      placeholder: "front-end,back-end"
+  
+  - type: input
+    id: mode
+    attributes:
+      label: Interaction Mode
+      description: How users interact with the AI tool
+      placeholder: "inline chat"
+  
+  - type: input
+    id: model
+    attributes:
+      label: AI Model
+      description: Specific AI model version (if applicable)
+      placeholder: "GPT-4o"
+  
+  - type: input
+    id: coding_language
+    attributes:
+      label: Programming Language
+      description: Primary programming language used in examples
+      placeholder: "Python"
+  
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Submission Guidelines
+      description: Please confirm the following
+      options:
+        - label: This use case can be completed in 10-30 minutes
+          required: true
+        - label: The objective is clear and measurable
+          required: true
+        - label: All required fields are filled out accurately
+          required: true 

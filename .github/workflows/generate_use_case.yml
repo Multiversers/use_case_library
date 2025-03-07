@@ -1,0 +1,104 @@
+name: "Generate Use Case"
+on:
+  workflow_dispatch:
+    inputs:
+      config_json:
+        description: |
+          JSON configuration for the use case. Example format:
+          {
+            "title": "Your use case title",
+            "family": "Code Generation",  # One of: Code Generation, Data Science, Debugging, Deployment Support, Documentation, Functionality analysis, Refactoring, Planning & Design, Security analysis, Testing & Quality Assurance, Data, Email Communication, Meetings, Presentations, Prompt Engineering
+            "ai_tool": "AI tool category",
+            "objective": "Clear learning objective",
+            "description": "2-3 sentences describing the use case",
+            "prerequisites": "skill1,skill2,skill3",
+            "time_estimate": "10-30 minutes",
+            "steps": "step1,step2,step3",
+            "tool": "Specific tool name",
+            "department": "dept1,dept2",
+            "role": "role1,role2",
+            "mode": "Tool interaction mode",
+            "model": "AI model version",
+            "coding_language": "Programming language"
+          }
+        required: true
+        type: string
+        default: |
+          {
+            "title": "Generate Unit Tests with AI Assistance",
+            "family": "Testing & Quality Assurance",
+            "ai_tool": "Coding Assistants",
+            "objective": "Learn to use AI to generate comprehensive unit tests for your code",
+            "description": "This use case demonstrates how to leverage AI coding assistants to generate effective unit tests. You'll learn to provide the right context and requirements to ensure thorough test coverage.",
+            "prerequisites": "Basic testing concepts,Python or JavaScript knowledge,Understanding of unit testing principles",
+            "time_estimate": "25 minutes",
+            "steps": "Select code to test,Describe test requirements,Generate initial tests,Review and refine coverage,Validate test quality",
+            "tool": "GitHub Copilot",
+            "department": "SWE",
+            "role": "back-end",
+            "mode": "inline chat",
+            "model": "GPT-4o",
+            "coding_language": "Python"
+          }
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13.1"
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Validate JSON
+        id: validate
+        run: |
+          echo '${{ github.event.inputs.config_json }}' | jq empty || {
+            echo "Error: Invalid JSON format. Please check your input."
+            exit 1
+          }
+
+      - name: Run generator
+        if: success()
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
+        run: |
+          # Extract values and run the generator
+          python workflow/use_case_generator.py \
+            --title "$(echo '${{ github.event.inputs.config_json }}' | jq -r '.title')" \
+            --family "$(echo '${{ github.event.inputs.config_json }}' | jq -r '.family')" \
+            --ai_tool "$(echo '${{ github.event.inputs.config_json }}' | jq -r '.ai_tool')" \
+            --objective "$(echo '${{ github.event.inputs.config_json }}' | jq -r '.objective')" \
+            --description "$(echo '${{ github.event.inputs.config_json }}' | jq -r '.description')" \
+            --prerequisites "$(echo '${{ github.event.inputs.config_json }}' | jq -r '.prerequisites')" \
+            --time_estimate "$(echo '${{ github.event.inputs.config_json }}' | jq -r '.time_estimate')" \
+            --steps "$(echo '${{ github.event.inputs.config_json }}' | jq -r '.steps')" \
+            --tool "$(echo '${{ github.event.inputs.config_json }}' | jq -r '.tool')" \
+            --department "$(echo '${{ github.event.inputs.config_json }}' | jq -r '.department')" \
+            --role "$(echo '${{ github.event.inputs.config_json }}' | jq -r '.role')" \
+            --mode "$(echo '${{ github.event.inputs.config_json }}' | jq -r '.mode')" \
+            --model "$(echo '${{ github.event.inputs.config_json }}' | jq -r '.model')" \
+            --coding_language "$(echo '${{ github.event.inputs.config_json }}' | jq -r '.coding_language')"
+
+      - name: Commit and push changes
+        if: success()
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add python-generator-use-cases/
+          git commit -m "Generate use case: $(echo '${{ github.event.inputs.config_json }}' | jq -r '.title')" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
