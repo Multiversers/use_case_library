@@ -17,11 +17,15 @@ This use case demonstrates how Gemini, an AI chatbot integrated into Gmail, can 
 
 _Example: This email thread, involving 6 people and containing 36 emails, discusses the specifics of a contractor being hired to create videos._
 
+![alt text](<Kapture 2025-03-07 at 11.17.57.gif>)
+
 
 **2. Prompt Gemini for a Summary**
 
 There are two options to get your summary:
 1. You may see a prompt that says "Summarize this email" at the top of the thread. If so, you can simply click that.
+
+![alt text](<Kapture 2025-03-07 at 11.13.51.gif>)
 
 2. If you do not see "Summarize this email", open the Gemini chat window by clicking the Gemini icon in the right-hand size panel of your Gmail window. Then simply type the prompt:
  ```markdown
