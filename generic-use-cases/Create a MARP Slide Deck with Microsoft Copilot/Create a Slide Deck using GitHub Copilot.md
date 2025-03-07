@@ -1,6 +1,6 @@
 # Create a MARP Slide Deck with Microsoft Copilot
 
-**Estimated time to complete:** 30 minutes
+**Estimated time to complete:** 20 minutes
 
 ## Overview
 Marp is a markdown presentation ecosystem that allows you to create beautiful slide decks using simple markdown syntax. It offers flexibility in styling and is easily integrated with tools like VS Code for live previews and exports to various formats like PDF and HTML. Using AI to generate MARP slides can significantly speed up the slide creation process by automating content generation and formatting, allowing you to focus on refining the presentation's message and style.
