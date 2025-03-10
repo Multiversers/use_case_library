@@ -1,0 +1,3 @@
+{
+  "content": "How can developers optimize Python docstrings and TODO comments to effectively communicate complex algorithmic intents via GitHub Copilot using GPT-4o, and what pitfalls should they be aware of in this prompting approach?\nWhat are the current best practices for structuring natural language prompts in inline chat to maximize the accuracy of AI-generated code, and how can these be validated against the original developer intent?\nIn what ways can front-end developers iteratively refine and evaluate AI code generation outputs on GitHub Copilot by leveraging structured comments, and what measurable criteria can ensure alignment with specified requirements?"
+}

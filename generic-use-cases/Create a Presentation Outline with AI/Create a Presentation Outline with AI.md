@@ -1,4 +1,4 @@
-# Create a Presentation Outline with AI
+# Create a Presentation Outline with Gemini
 
 **Estimated time to complete:** 20 minutes
 
@@ -6,9 +6,9 @@
 
 ## Steps:
 
-**1. Open Your Presentation Software and Accompanying AI Tool.**
+**1. Open Gemini and Your Presentation Software and Accompanying AI Tool.**
 
-Ensure that your chosen presentation software (e.g., Google Slides, PowerPoint) is open and that the integrated AI tool (e.g., Gemini, Microsoft Copilot) is accessible. This might involve clicking an icon or using a specific command within the software.
+Ensure that your chosen presentation software (e.g., Google Slides, PowerPoint) is open. Access Gemini by going to https://gemini.google.com/ and logging in. Note that if you're using Google Slides, the Gemini is integrated with Google Slides. However, Gemini's website is a lot easier to use for this use case. 
 
 **2. Provide Context to the AI Tool.**
 
@@ -20,9 +20,12 @@ Clearly articulate the key parameters of your presentation to the AI tool. This 
 *   **The desired tone** of your presentation (e.g., formal, informal, technical, engaging).
 *   You can also specify preferences for **the desired length** (number of slides), **visual style**, and **types of content** you anticipate using (e.g., primarily text, incorporating images, requiring charts or diagrams).
 
-**3. Generate the Presentation Outline.**
+**3. Submit Your Prompt to Generate the Presentation Outline.**
 
-Instruct the AI tool to generate a presentation outline based on the context you have provided. For example, you might use a prompt like: "Create a presentation outline on \[Your Topic] for a \[Your Audience] with the goal of \[Your Goal]. Aim for approximately \[Number] slides and suggest incorporating \[Types of Content]." The AI will then analyse your input and generate a structured outline within the chat window or directly within your presentation software. This generated content may include:
+Instruct the AI tool to generate a presentation outline based on the context you have provided. For example, you might use a prompt like: 
+> "Create a presentation outline on \[Your Topic] for a \[Your Audience] with the goal of \[Your Goal]. Aim for approximately \[Number] slides and suggest incorporating \[Types of Content]." 
+
+The AI will then analyse your input and generate a structured outline within the chat window or directly within your presentation software. This generated content may include:
 
 *   **A title slide** suggestion, potentially with relevant visual ideas and placeholders for your main title and subtitle.
 *   **A selection of potential slide layouts**, offering different structures for various content types (e.g., title and content, two content blocks, content with image).
@@ -45,9 +48,14 @@ Once you are satisfied with the structure of your presentation outline, save it 
 
 ## Solution Walkthrough
 
+The video belows walks through the process to produce a presentation outline using Gemini. We suggest you take a similar approach when creating your own outline. Take a look! 
+
+<p align="center">
+  <video width="600" height="400" controls>
+    <source src="Create a Presentation Outline.mp4" type="video/mp4">
+  </video>
+</p>
+
 ## Additional Resources
 
-*   \[Relevant help documentation for your chosen AI tool, e.g., Gemini Help Center, Microsoft Copilot support pages].
-*   \[Help documentation for your presentation software, e.g., Google Slides Help, Microsoft PowerPoint Help].
-
-This use case adheres to the principles discussed in the sources by providing a **specific objective** (creating a presentation outline), aiming for a **time-bound completion** (20 minutes), being **relevant** to a common task, breaking the process into **achievable steps**, addressing a potentially **repeatable** action, and offering **measurable value** through time savings and improved organisation. The steps are designed to be as **specific as possible** to the interaction with an AI tool within presentation software.
+*   [Generative AI for presentations](https://workspace.google.com/resources/presentation-ai/)
