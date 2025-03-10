@@ -18,7 +18,12 @@ Gemini's email drafting feature in Gmail can help you quickly generate high-qual
 
 There are two options to draft your email using Gemini:
 1. Look for the Gemini icon in the right-hand side panel of your Gmail window. Click on the icon to open the Gemini interface.
+
+![alt text](<Kapture 2025-03-07 at 12.39.51.gif>)
+
 2. Click the "help me write" Gemini icon at the bottom of the email draft.
+
+![alt text](<Kapture 2025-03-07 at 12.37.38.gif>)
 
 **3. Provide a Prompt to Gemini**
 
@@ -33,6 +38,9 @@ There are two options to draft your email using Gemini:
 
 "Compose a persuasive email to [Recipient Name] convincing them to [Action]."
 ```
+
+![alt text](<Kapture 2025-03-07 at 12.49.54.gif>)
+
 
 **4. Refine the Draft with Gemini**
 
@@ -50,6 +58,8 @@ There are two options to draft your email using Gemini:
 
 "Can you add a call to action at the end of this email?"
 ```
+
+![alt text](<Kapture 2025-03-07 at 12.54.28.gif>)
 
 **6. Finalize and Send the Email**
 
