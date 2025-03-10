@@ -1,0 +1,180 @@
+name: "Process Use Case Request"
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  process-use-case-issue:
+    if: contains(github.event.issue.labels.*.name, 'use-case-request')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13.1"
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            echo "⚠️ requirements.txt not found, skipping dependency installation"
+          fi
+
+      - name: Check required secrets
+        run: |
+          if [ -z "${{ secrets.OPENAI_API_KEY }}" ] || [ -z "${{ secrets.PERPLEXITY_API_KEY }}" ]; then
+            echo "❌ Required API keys are not configured in repository secrets"
+            exit 1
+          fi
+        env:
+          OPENAI_KEY_CHECK: ${{ secrets.OPENAI_API_KEY }}
+          PERPLEXITY_KEY_CHECK: ${{ secrets.PERPLEXITY_API_KEY }}
+
+      - name: Extract issue details and trigger generator
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Create a Python script to parse the form data
+          cat > parse_issue.py << 'EOF'
+          import os
+          import re
+          import json
+          import subprocess
+          from typing import Dict, Optional
+
+          def extract_field(body: str, field: str) -> Optional[str]:
+              """Extract a field value from the issue body."""
+              # Updated pattern to handle markdown headers and asterisks
+              pattern = f"### {field}\\*?\\s*\\n\\s*([^#]*?)(?=###|$)"
+              match = re.search(pattern, body, re.DOTALL)
+              if match:
+                  value = match.group(1).strip()
+                  if field in ["Prerequisites", "Steps"]:
+                      # Convert multiline input to comma-separated list
+                      lines = [line.strip() for line in value.split("\n") if line.strip()]
+                      value = ",".join(lines)
+                  return value
+              return None
+
+          def parse_issue_body(body: str) -> Dict[str, str]:
+              """Parse the issue body and extract all fields."""
+              fields = {
+                  "title": "Title",
+                  "family": "Family/Category",
+                  "ai_tool": "AI Tool",
+                  "objective": "Learning Objective",
+                  "description": "Description",
+                  "prerequisites": "Prerequisites",
+                  "time_estimate": "Time Estimate",
+                  "steps": "Steps",
+                  "tool": "Specific Tool",
+                  "department": "Target Department(s)",
+                  "role": "Target Role(s)",
+                  "mode": "Interaction Mode",
+                  "model": "AI Model",
+                  "coding_language": "Programming Language"
+              }
+              
+              data = {}
+              for key, label in fields.items():
+                  value = extract_field(body, label)
+                  if value:
+                      data[key] = value
+              
+              return data
+
+          def main():
+              issue_body = os.environ.get("ISSUE_BODY", "")
+              if not issue_body:
+                  raise ValueError("Issue body is empty")
+              
+              # Parse the issue body
+              data = parse_issue_body(issue_body)
+              
+              # Validate required fields
+              required_fields = ["title", "family", "ai_tool", "objective", "description", "time_estimate"]
+              missing = [f"{fields[f]} (*)" for f in required_fields if not data.get(f)]
+              if missing:
+                  raise ValueError(f"Missing required fields:\n" + "\n".join(missing))
+              
+              # Check if generator script exists
+              if not os.path.exists("workflow/use_case_generator.py"):
+                  raise ValueError("❌ Generator script not found at workflow/use_case_generator.py")
+              
+              # Build the command
+              cmd = ["python", "workflow/use_case_generator.py"]
+              for key, value in data.items():
+                  cmd.extend([f"--{key}", value])
+              
+              # Run the generator
+              try:
+                  result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+                  print("Generator output:")
+                  print(result.stdout)
+                  
+                  # Add success comment
+                  comment = (
+                      "✅ Use case generated successfully!\n\n"
+                      "The use case has been generated and committed to the repository. "
+                      "You can find it in the latest commit."
+                  )
+                  
+                  with open("issue_comment.txt", "w") as f:
+                      f.write(comment)
+                      
+              except subprocess.CalledProcessError as e:
+                  print("Error running generator:")
+                  print(e.stderr)
+                  
+                  # Add failure comment
+                  comment = (
+                      "❌ Error generating use case:\n"
+                      "```\n"
+                      f"{e.stderr}\n"
+                      "```\n\n"
+                      "Please check the error message above and update the issue accordingly."
+                  )
+                  
+                  with open("issue_comment.txt", "w") as f:
+                      f.write(comment)
+
+          if __name__ == "__main__":
+              try:
+                  main()
+              except Exception as e:
+                  print(f"Error: {str(e)}")
+                  with open("issue_comment.txt", "w") as f:
+                      f.write(f"❌ Error processing issue: {str(e)}")
+          EOF
+          
+          # Execute the parsing script
+          python parse_issue.py
+          
+          # Comment on the issue
+          if [ -f "issue_comment.txt" ]; then
+            gh issue comment ${{ github.event.issue.number }} --body "$(cat issue_comment.txt)"
+          fi
+
+      - name: Commit and push changes
+        if: success()
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add use_cases/
+          git commit -m "Generate use case from issue #${{ github.event.issue.number }}" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
