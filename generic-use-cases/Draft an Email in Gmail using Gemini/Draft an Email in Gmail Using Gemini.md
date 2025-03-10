@@ -41,6 +41,7 @@ There are two options to draft your email using Gemini:
 
 ![alt text](<Kapture 2025-03-07 at 12.49.54.gif>)
 
+![alt text](<Kapture 2025-03-07 at 12.47.38.gif>)
 
 **4. Refine the Draft with Gemini**
 
@@ -49,6 +50,9 @@ There are two options to draft your email using Gemini:
 * If you need to make any changes, ask Gemini to revise the draft.
 * You can ask Gemini to adjust the tone, style, and length of the email.
      * If you are using the "help me write" tool within email, you will also be given three options to edit the email: Formalize, Elaborate, and Shorten.
+
+![alt text](<Kapture 2025-03-07 at 12.52.43.gif>)
+
 * Here are some examples of prompts you can use to ask Gemini to make changes:
 
 ```markdown
